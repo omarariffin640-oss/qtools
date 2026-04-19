@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QTools Shop - Premium Features</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            min-height: 100vh;
+            color: #f1f5f9;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(99, 102, 241, 0.3);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .logo span {
+            background: none;
+            color: #f1f5f9;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #6366f1;
+        }
+
+        .shop-badge {
+            background: linear-gradient(135deg, #f59e0b, #ef4444);
+            padding: 8px 20px;
+            border-radius: 30px;
+            color: white !important;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .shop-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .shop-header h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #f59e0b, #ef4444);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .shop-header p {
+            color: #94a3b8;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .pricing-card {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            transition: 0.3s;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            border-color: #f59e0b;
+        }
+
+        .pricing-card.popular {
+            border: 2px solid #f59e0b;
+            position: relative;
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background: #f59e0b;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .price {
+            font-size: 48px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .price small {
+            font-size: 16px;
+            color: #94a3b8;
+        }
+
+        .features {
+            list-style: none;
+            margin: 30px 0;
+            text-align: left;
+        }
+
+        .features li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .features li::before {
+            content: "✓";
+            color: #10b981;
+            font-weight: bold;
+        }
+
+        .features li.disabled {
+            opacity: 0.5;
+        }
+
+        .features li.disabled::before {
+            content: "✗";
+            color: #ef4444;
+        }
+
+        .buy-btn {
+            background: linear-gradient(135deg, #f59e0b, #ef4444);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: 0.3s;
+        }
+
+        .buy-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .one-time-section {
+            background: rgba(30, 41, 59, 0.4);
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 40px;
+        }
+
+        .one-time-section h3 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .one-time-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .one-time-item {
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .one-time-price {
+            font-size: 24px;
+            font-weight: bold;
+            color: #f59e0b;
+            margin: 10px 0;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px;
+            color: #64748b;
+            border-top: 1px solid rgba(99, 102, 241, 0.2);
+            margin-top: 60px;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 20px;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="logo">Q<span>Tools</span></div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="shop.html" class="shop-badge">🛒 Shop</a>
+            <a href="settings.html">⚙️ Settings</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="shop-header">
+            <h1>🛒 QTools Shop</h1>
+            <p>Upgrade to premium and unlock all features. No hidden fees, cancel anytime.</p>
+        </div>
+
+        <div class="pricing-grid">
+            <!-- Free Plan -->
+            <div class="pricing-card">
+                <h3>Free</h3>
+                <div class="price">RM0</div>
+                <p>Forever free</p>
+                <ul class="features">
+                    <li>5 files per day</li>
+                    <li>Basic PDF tools</li>
+                    <li class="disabled">No watermark removal</li>
+                    <li class="disabled">Batch processing</li>
+                    <li class="disabled">Priority support</li>
+                </ul>
+                <button class="buy-btn" style="background: #334155;"
+                    onclick="alert('You are already on Free plan! Upgrade to Pro for more features.')">Current
+                    Plan</button>
+            </div>
+
+            <!-- Pro Plan (Popular) -->
+            <div class="pricing-card popular">
+                <div class="popular-badge">⭐ Most Popular</div>
+                <h3>QTools Pro</h3>
+                <div class="price">RM15 <small>/month</small></div>
+                <p>Best for regular users</p>
+                <ul class="features">
+                    <li>Unlimited files</li>
+                    <li>All PDF tools</li>
+                    <li>✓ No watermark</li>
+                    <li>✓ Batch processing (up to 50 files)</li>
+                    <li>✓ Priority support</li>
+                    <li>✓ Premium templates</li>
+                </ul>
+                <button class="buy-btn" onclick="checkout('pro', 15)">Get Pro Now</button>
+            </div>
+
+            <!-- Business Plan -->
+            <div class="pricing-card">
+                <h3>Business</h3>
+                <div class="price">RM50 <small>/month</small></div>
+                <p>For teams & companies</p>
+                <ul class="features">
+                    <li>Everything in Pro</li>
+                    <li>✓ 5 team accounts</li>
+                    <li>✓ API access</li>
+                    <li>✓ Custom branding</li>
+                    <li>✓ Dedicated support</li>
+                    <li>✓ Analytics dashboard</li>
+                </ul>
+                <button class="buy-btn" onclick="checkout('business', 50)">Contact Sales</button>
+            </div>
+        </div>
+
+        <!-- One-Time Purchase Items -->
+        <div class="one-time-section">
+            <h3>✨ One-Time Purchase ✨</h3>
+            <div class="one-time-grid">
+                <div class="one-time-item">
+                    <div>🔓</div>
+                    <h4>Remove Watermark</h4>
+                    <div class="one-time-price">RM5</div>
+                    <p>One-time payment, forever</p>
+                    <button class="buy-btn" style="background: #10b981; margin-top: 15px;"
+                        onclick="checkout('watermark', 5)">Buy Now</button>
+                </div>
+                <div class="one-time-item">
+                    <div>📦</div>
+                    <h4>Batch Processing</h4>
+                    <div class="one-time-price">RM10</div>
+                    <p>Process 100 files at once</p>
+                    <button class="buy-btn" style="background: #10b981; margin-top: 15px;"
+                        onclick="checkout('batch', 10)">Buy Now</button>
+                </div>
+                <div class="one-time-item">
+                    <div>🎨</div>
+                    <h4>Template Pack</h4>
+                    <div class="one-time-price">RM15</div>
+                    <p>50+ resume & invoice templates</p>
+                    <button class="buy-btn" style="background: #10b981; margin-top: 15px;"
+                        onclick="checkout('templates', 15)">Buy Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>© 2026 QTools - Secure payments via PayPal & TNG eWallet</p>
+    </div>
+
+    <script>
+        function checkout(item, price) {
+            // For demo - in production, integrate with PayPal/TNG
+            const message = `You selected: ${item}\nPrice: RM${price}\n\nPayment options:\n1. PayPal: paypal.me/qtools\n2. TNG eWallet: 0123456789\n\nReference: QTOOLS-${Date.now()}\n\nAfter payment, email receipt to support@qtools.com`;
+            alert(message);
+
+            // You can replace this with actual payment gateway integration
+            // window.location.href = `https://paypal.me/qtools/${price}`;
+        }
+    </script>
+</body>
+
+</html>
