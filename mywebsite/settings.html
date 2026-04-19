@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QTools - Settings</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            min-height: 100vh;
+            color: #f1f5f9;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(99, 102, 241, 0.3);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .logo span {
+            background: none;
+            color: #f1f5f9;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #6366f1;
+        }
+
+        .shop-badge {
+            background: linear-gradient(135deg, #f59e0b, #ef4444);
+            padding: 8px 20px;
+            border-radius: 30px;
+            color: white !important;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .settings-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .settings-header h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .settings-card {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 25px;
+        }
+
+        .setting-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+        }
+
+        .setting-item:last-child {
+            border-bottom: none;
+        }
+
+        .setting-info h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .setting-info p {
+            font-size: 13px;
+            color: #94a3b8;
+        }
+
+        /* Toggle Switch */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #334155;
+            transition: 0.3s;
+            border-radius: 24px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: 0.3s;
+            border-radius: 50%;
+        }
+
+        input:checked+.slider {
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+        }
+
+        input:checked+.slider:before {
+            transform: translateX(26px);
+        }
+
+        .save-btn {
+            background: linear-gradient(135deg, #10b981, #059669);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+
+        .save-btn:hover {
+            transform: scale(1.02);
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #10b981;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 10px;
+            display: none;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px;
+            color: #64748b;
+            border-top: 1px solid rgba(99, 102, 241, 0.2);
+            margin-top: 60px;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 20px;
+            }
+
+            .setting-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="logo">Q<span>Tools</span></div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="shop.html" class="shop-badge">🛒 Shop</a>
+            <a href="settings.html">⚙️ Settings</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="settings-header">
+            <h1>⚙️ Settings</h1>
+            <p>Customize your QTools experience</p>
+        </div>
+
+        <!-- Appearance Settings -->
+        <div class="settings-card">
+            <h3 style="margin-bottom: 15px;">Appearance</h3>
+            <div class="setting-item">
+                <div class="setting-info">
+                    <h3>Dark Mode</h3>
+                    <p>Switch between dark and light theme</p>
+                </div>
+                <label class="switch">
+                    <input type="checkbox" id="darkModeToggle" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="setting-item">
+                <div class="setting-info">
+                    <h3>Animations</h3>
+                    <p>Enable smooth transitions and effects</p>
+                </div>
+                <label class="switch">
+                    <input type="checkbox" id="animationsToggle" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Privacy Settings -->
+        <div class="settings-card">
+            <h3 style="margin-bottom: 15px;">Privacy & Security</h3>
+            <div class="setting-item">
+                <div class="setting-info">
+                    <h3>Auto-delete files after 1 hour</h3>
+                    <p>Automatically clear processed files from memory</p>
+                </div>
+                <label class="switch">
+                    <input type="checkbox" id="autoDeleteToggle" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="setting-item">
+                <div class="setting-info">
+                    <h3>Anonymous Usage Data</h3>
+                    <p>Help improve QTools by sharing anonymous data</p>
+                </div>
+                <label class="switch">
+                    <input type="checkbox" id="analyticsToggle">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Premium Features (Shop Items) -->
+        <div class="settings-card">
+            <h3 style="margin-bottom: 15px;">✨ Premium Features</h3>
+            <div class="setting-item">
+                <div class="setting-info">
+                    <h3>Remove Watermark</h3>
+                    <p>Export PDFs without QTools watermark</p>
+                </div>
+                <label class="switch">
+                    <input type="checkbox" id="removeWatermarkToggle" disabled>
+                    <span class="slider"></span>
+                </label>
+                <button onclick="window.location.href='shop.html'"
+                    style="background: #f59e0b; border: none; padding: 5px 15px; border-radius: 20px; color: white; cursor: pointer; margin-left: 10px;">Buy
+                    RM5</button>
+            </div>
+            <div class="setting-item">
+                <div class="setting-info">
+                    <h3>Batch Processing</h3>
+                    <p>Process up to 100 files at once</p>
+                </div>
+                <label class="switch">
+                    <input type="checkbox" id="batchProcessToggle" disabled>
+                    <span class="slider"></span>
+                </label>
+                <button onclick="window.location.href='shop.html'"
+                    style="background: #f59e0b; border: none; padding: 5px 15px; border-radius: 20px; color: white; cursor: pointer; margin-left: 10px;">Buy
+                    RM10</button>
+            </div>
+            <div class="setting-item">
+                <div class="setting-info">
+                    <h3>Priority Support</h3>
+                    <p>24/7 priority customer support</p>
+                </div>
+                <label class="switch">
+                    <input type="checkbox" id="prioritySupportToggle" disabled>
+                    <span class="slider"></span>
+                </label>
+                <button onclick="window.location.href='shop.html'"
+                    style="background: #f59e0b; border: none; padding: 5px 15px; border-radius: 20px; color: white; cursor: pointer; margin-left: 10px;">Get
+                    Pro</button>
+            </div>
+        </div>
+
+        <button class="save-btn" onclick="saveSettings()">💾 Save All Settings</button>
+    </div>
+
+    <div id="toast" class="toast">✓ Settings saved successfully!</div>
+
+    <div class="footer">
+        <p>© 2026 QTools - Settings are saved locally in your browser</p>
+    </div>
+
+    <script>
+        // Load saved settings on page load
+        function loadSettings() {
+            // Dark Mode
+            const darkMode = localStorage.getItem('qtools_darkMode') === 'true';
+            document.getElementById('darkModeToggle').checked = darkMode !== false;
+
+            // Animations
+            const animations = localStorage.getItem('qtools_animations') === 'true';
+            document.getElementById('animationsToggle').checked = animations !== false;
+
+            // Auto Delete
+            const autoDelete = localStorage.getItem('qtools_autoDelete') === 'true';
+            document.getElementById('autoDeleteToggle').checked = autoDelete !== false;
+
+            // Analytics
+            const analytics = localStorage.getItem('qtools_analytics') === 'true';
+            document.getElementById('analyticsToggle').checked = analytics === true;
+
+            // Premium features status
+            const removeWatermark = localStorage.getItem('qtools_watermark') === 'true';
+            document.getElementById('removeWatermarkToggle').checked = removeWatermark;
+
+            const batchProcess = localStorage.getItem('qtools_batch') === 'true';
+            document.getElementById('batchProcessToggle').checked = batchProcess;
+
+            const prioritySupport = localStorage.getItem('qtools_support') === 'true';
+            document.getElementById('prioritySupportToggle').checked = prioritySupport;
+        }
+
+        function saveSettings() {
+            // Save all settings to localStorage
+            localStorage.setItem('qtools_darkMode', document.getElementById('darkModeToggle').checked);
+            localStorage.setItem('qtools_animations', document.getElementById('animationsToggle').checked);
+            localStorage.setItem('qtools_autoDelete', document.getElementById('autoDeleteToggle').checked);
+            localStorage.setItem('qtools_analytics', document.getElementById('analyticsToggle').checked);
+
+            // Apply dark mode immediately
+            applyDarkMode();
+
+            // Show toast notification
+            const toast = document.getElementById('toast');
+            toast.style.display = 'block';
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 2000);
+        }
+
+        function applyDarkMode() {
+            const isDark = localStorage.getItem('qtools_darkMode') === 'true';
+            if (isDark) {
+                document.body.style.background = 'linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%)';
+            } else {
+                document.body.style.background = 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)';
+                document.body.style.color = '#0f172a';
+            }
+        }
+
+        // Check for purchased premium features
+        function checkPremiumStatus() {
+            // This would check with your backend or localStorage for demo
+            const hasPro = localStorage.getItem('qtools_pro') === 'true';
+            if (hasPro) {
+                document.getElementById('removeWatermarkToggle').disabled = false;
+                document.getElementById('batchProcessToggle').disabled = false;
+                document.getElementById('prioritySupportToggle').disabled = false;
+            }
+        }
+
+        // Initialize
+        loadSettings();
+        checkPremiumStatus();
+
+        // Listen for payment success (if coming from shop)
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('payment') === 'success') {
+            document.getElementById('toast').style.background = '#10b981';
+            document.getElementById('toast').innerHTML = '✓ Payment successful! Premium features unlocked!';
+            document.getElementById('toast').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('toast').style.display = 'none';
+            }, 3000);
+
+            // For demo purposes - unlock premium
+            localStorage.setItem('qtools_pro', 'true');
+            checkPremiumStatus();
+        }
+    </script>
+</body>
+
+</html>
