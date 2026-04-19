@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QTools - Free PDF Tools Online</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            min-height: 100vh;
+            color: #f1f5f9;
+        }
+
+        /* Navigation */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(99, 102, 241, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .logo span {
+            background: none;
+            color: #f1f5f9;
+            -webkit-background-clip: unset;
+            background-clip: unset;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #6366f1;
+        }
+
+        .shop-badge {
+            background: linear-gradient(135deg, #f59e0b, #ef4444);
+            padding: 8px 20px;
+            border-radius: 30px;
+            color: white !important;
+            font-weight: bold;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 60px 20px 40px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #fff, #a855f7);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            color: #94a3b8;
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Tools Grid */
+        .tools-grid {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .tool-card {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            cursor: pointer;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+            border-color: #6366f1;
+            box-shadow: 0 0 30px rgba(99, 102, 241, 0.2);
+        }
+
+        .tool-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .tool-card h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .tool-card p {
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #10b981;
+            color: white;
+            font-size: 10px;
+            padding: 3px 8px;
+            border-radius: 20px;
+            margin-top: 10px;
+        }
+
+        /* Upload Area */
+        .upload-area {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 50px;
+            background: rgba(30, 41, 59, 0.4);
+            border-radius: 30px;
+            border: 2px dashed #6366f1;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .upload-area:hover {
+            background: rgba(99, 102, 241, 0.1);
+            border-color: #a855f7;
+        }
+
+        .upload-btn {
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .upload-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px;
+            color: #64748b;
+            border-top: 1px solid rgba(99, 102, 241, 0.2);
+            margin-top: 60px;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: #1e293b;
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+        }
+
+        .close-modal {
+            background: #ef4444;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            color: white;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 20px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .upload-area {
+                padding: 30px;
+                margin: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">Q<span>Tools</span></div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="shop.html" class="shop-badge">🛒 Shop</a>
+            <a href="settings.html">⚙️ Settings</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>Quick Tools, Quality Results</h1>
+        <p>Free PDF tools with modern design. No signup required. Process your documents instantly.</p>
+    </div>
+
+    <!-- Drag & Drop Area -->
+    <div class="upload-area" id="dropZone">
+        <div style="font-size: 48px; margin-bottom: 15px;">📁</div>
+        <h3>Drop PDF files here or click to browse</h3>
+        <p style="margin: 15px 0; color: #94a3b8;">Supports: PDF, JPG, PNG, DOCX</p>
+        <input type="file" id="fileInput" multiple style="display: none;" accept=".pdf,.jpg,.png,.docx">
+        <button class="upload-btn" onclick="document.getElementById('fileInput').click()">Choose Files</button>
+        <div id="selectedFiles" style="margin-top: 20px; font-size: 14px; color: #94a3b8;"></div>
+    </div>
+
+    <!-- Tools Grid (6 Core Tools) -->
+    <div class="tools-grid">
+        <div class="tool-card" onclick="selectTool('merge')">
+            <div class="tool-icon">🔄</div>
+            <h3>PDF Merger</h3>
+            <p>Gabung multiple PDF jadi satu file</p>
+            <span class="badge">Free</span>
+        </div>
+        <div class="tool-card" onclick="selectTool('compress')">
+            <div class="tool-icon">📦</div>
+            <h3>PDF Compressor</h3>
+            <p>Kecilkan size PDF sehingga 70%</p>
+            <span class="badge">Free</span>
+        </div>
+        <div class="tool-card" onclick="selectTool('convert')">
+            <div class="tool-icon">🖼️</div>
+            <h3>PDF to Image</h3>
+            <p>Convert PDF ke JPG/PNG</p>
+            <span class="badge">Free</span>
+        </div>
+        <div class="tool-card" onclick="selectTool('split')">
+            <div class="tool-icon">✂️</div>
+            <h3>PDF Splitter</h3>
+            <p>Potong PDF ikut halaman</p>
+            <span class="badge">Free</span>
+        </div>
+        <div class="tool-card" onclick="selectTool('rotate')">
+            <div class="tool-icon">🔄</div>
+            <h3>PDF Rotator</h3>
+            <p>Pusing orientation halaman</p>
+            <span class="badge">Free</span>
+        </div>
+        <div class="tool-card" onclick="selectTool('protect')">
+            <div class="tool-icon">🔒</div>
+            <h3>PDF Protector</h3>
+            <p>Add password ke PDF</p>
+            <span class="badge">Free</span>
+        </div>
+    </div>
+
+    <!-- Coming Soon Banner -->
+    <div style="max-width: 800px; margin: 0 auto; padding: 0 20px;">
+        <div
+            style="background: rgba(245, 158, 11, 0.1); border: 1px solid #f59e0b; border-radius: 15px; padding: 15px; text-align: center;">
+            <span style="color: #f59e0b;">✨ Coming Next Week:</span>
+            <span style="color: #cbd5e1;"> PDF Watermark, Page Remover, PDF Organizer</span>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="toolModal" class="modal">
+        <div class="modal-content">
+            <div id="modalIcon" style="font-size: 48px; margin-bottom: 15px;"></div>
+            <h3 id="modalTitle"></h3>
+            <p id="modalMessage" style="margin: 15px 0; color: #94a3b8;"></p>
+            <button class="close-modal" onclick="closeModal()">Close</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© 2026 QTools - Free PDF Tools | Made with ⚡ for everyone</p>
+        <p style="font-size: 12px; margin-top: 10px;">Files are processed locally - your data never leaves your device
+        </p>
+    </div>
+
+    <script>
+        // File handling
+        const fileInput = document.getElementById('fileInput');
+        const dropZone = document.getElementById('dropZone');
+        const selectedFilesDiv = document.getElementById('selectedFiles');
+        let currentFiles = [];
+
+        // Click on dropzone to trigger file input
+        dropZone.addEventListener('click', function (e) {
+            if (e.target !== fileInput && !e.target.classList.contains('upload-btn')) {
+                fileInput.click();
+            }
+        });
+
+        // Drag and drop
+        dropZone.addEventListener('dragover', function (e) {
+            e.preventDefault();
+            dropZone.style.borderColor = '#a855f7';
+            dropZone.style.background = 'rgba(99, 102, 241, 0.15)';
+        });
+
+        dropZone.addEventListener('dragleave', function (e) {
+            e.preventDefault();
+            dropZone.style.borderColor = '#6366f1';
+            dropZone.style.background = 'rgba(30, 41, 59, 0.4)';
+        });
+
+        dropZone.addEventListener('drop', function (e) {
+            e.preventDefault();
+            dropZone.style.borderColor = '#6366f1';
+            dropZone.style.background = 'rgba(30, 41, 59, 0.4)';
+
+            const files = e.dataTransfer.files;
+            handleFiles(files);
+        });
+
+        fileInput.addEventListener('change', function (e) {
+            handleFiles(e.target.files);
+        });
+
+        function handleFiles(files) {
+            currentFiles = Array.from(files);
+            let fileNames = currentFiles.map(f => f.name).join(', ');
+            selectedFilesDiv.innerHTML = `📄 Selected: ${fileNames}`;
+
+            if (currentFiles.length > 0) {
+                // Auto-detect what tool to use based on file type
+                autoDetectTool();
+            }
+        }
+
+        function autoDetectTool() {
+            const extensions = currentFiles.map(f => f.name.split('.').pop().toLowerCase());
+
+            if (extensions.every(ext => ext === 'pdf')) {
+                if (currentFiles.length > 1) {
+                    showToolPrompt('merge', 'PDF Merger', `${currentFiles.length} PDF files selected. Ready to merge!`);
+                } else {
+                    showToolPrompt('compress', 'PDF Compressor', '1 PDF file selected. Ready to compress!');
+                }
+            } else if (extensions.some(ext => ext === 'pdf') && extensions.some(ext => ['jpg', 'jpeg', 'png'].includes(ext))) {
+                showToolPrompt('convert', 'PDF to Image', 'Mixed files detected. Convert PDF to images?');
+            } else {
+                showToolPrompt('general', 'QTools', 'Files uploaded! Select a tool from below to process.');
+            }
+        }
+
+        function selectTool(toolName) {
+            if (currentFiles.length === 0) {
+                showToolPrompt('error', 'No Files', 'Please upload files first by dragging or clicking the upload area.');
+                return;
+            }
+
+            const toolMessages = {
+                merge: { title: '🔄 PDF Merger', msg: `Merging ${currentFiles.length} PDF files... (Demo - Premium feature for batch merge)` },
+                compress: { title: '📦 PDF Compressor', msg: 'Compressing your PDF... (Demo - Full compression in Pro version)' },
+                convert: { title: '🖼️ PDF to Image', msg: 'Converting PDF to images... (Demo - High quality in Pro version)' },
+                split: { title: '✂️ PDF Splitter', msg: 'Splitting PDF by pages... (Demo - Custom split in Pro version)' },
+                rotate: { title: '🔄 PDF Rotator', msg: 'Rotating PDF pages... (Demo - All angles in Pro version)' },
+                protect: { title: '🔒 PDF Protector', msg: 'Adding password protection... (Demo - Strong encryption in Pro version)' }
+            };
+
+            const tool = toolMessages[toolName];
+            showToolPrompt(toolName, tool.title, tool.msg);
+
+            // Simulate processing
+            setTimeout(() => {
+                document.getElementById('toolModal').style.display = 'none';
+                showPremiumPrompt();
+            }, 2000);
+        }
+
+        function showToolPrompt(toolId, title, message) {
+            document.getElementById('modalIcon').innerHTML = title.split(' ')[0];
+            document.getElementById('modalTitle').innerHTML = title;
+            document.getElementById('modalMessage').innerHTML = message;
+            document.getElementById('toolModal').style.display = 'flex';
+        }
+
+        function showPremiumPrompt() {
+            document.getElementById('modalIcon').innerHTML = '✨';
+            document.getElementById('modalTitle').innerHTML = 'Want Full Access?';
+            document.getElementById('modalMessage').innerHTML = 'Upgrade to QTools Pro for unlimited processing, no watermark, and priority support!';
+            document.getElementById('toolModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('toolModal').style.display = 'none';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function (event) {
+            const modal = document.getElementById('toolModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // Track tool clicks for analytics
+        function trackToolClick(toolName) {
+            console.log(`Tool clicked: ${toolName}`);
+            // You can add Google Analytics or Plausible here later
+        }
+    </script>
+</body>
+
+</html>
