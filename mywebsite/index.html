@@ -31,6 +31,8 @@
             position: sticky;
             top: 0;
             z-index: 100;
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
         .logo {
@@ -45,14 +47,13 @@
         .logo span {
             background: none;
             color: #f1f5f9;
-            -webkit-background-clip: unset;
-            background-clip: unset;
         }
 
         .nav-links {
             display: flex;
             gap: 30px;
             align-items: center;
+            flex-wrap: wrap;
         }
 
         .nav-links a {
@@ -95,10 +96,107 @@
             margin: 0 auto;
         }
 
+        /* Search Bar */
+        .search-section {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        .search-container {
+            position: relative;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 15px 20px;
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid rgba(99, 102, 241, 0.4);
+            border-radius: 50px;
+            color: white;
+            font-size: 16px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .search-box:focus {
+            border-color: #a855f7;
+            box-shadow: 0 0 15px rgba(168, 85, 247, 0.3);
+        }
+
+        .search-box::placeholder {
+            color: #64748b;
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+            color: #64748b;
+        }
+
+        /* Auto-suggestion dropdown */
+        .suggestions-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: #1e293b;
+            border-radius: 15px;
+            margin-top: 10px;
+            z-index: 100;
+            display: none;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .suggestion-item {
+            padding: 12px 20px;
+            cursor: pointer;
+            transition: 0.2s;
+            border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+        }
+
+        .suggestion-item:hover {
+            background: rgba(99, 102, 241, 0.2);
+        }
+
+        /* Category Filter */
+        .category-filter {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .category-btn {
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            padding: 8px 20px;
+            border-radius: 30px;
+            color: #cbd5e1;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 14px;
+        }
+
+        .category-btn:hover,
+        .category-btn.active {
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            border-color: transparent;
+            color: white;
+        }
+
         /* Tools Grid */
         .tools-grid {
             max-width: 1200px;
-            margin: 50px auto;
+            margin: 30px auto;
             padding: 0 20px;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -109,7 +207,7 @@
             background: rgba(30, 41, 59, 0.6);
             backdrop-filter: blur(10px);
             border-radius: 20px;
-            padding: 30px;
+            padding: 25px;
             text-align: center;
             transition: all 0.3s ease;
             border: 1px solid rgba(99, 102, 241, 0.2);
@@ -128,13 +226,13 @@
         }
 
         .tool-card h3 {
-            font-size: 20px;
-            margin-bottom: 10px;
+            font-size: 18px;
+            margin-bottom: 8px;
         }
 
         .tool-card p {
             color: #94a3b8;
-            font-size: 14px;
+            font-size: 13px;
         }
 
         .badge {
@@ -147,11 +245,51 @@
             margin-top: 10px;
         }
 
+        .badge.popular {
+            background: #f59e0b;
+        }
+
+        /* Popular Tools Section */
+        .popular-section {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .popular-section h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .popular-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .popular-item {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .popular-item:hover {
+            background: rgba(245, 158, 11, 0.2);
+            transform: translateY(-3px);
+        }
+
         /* Upload Area */
         .upload-area {
             max-width: 800px;
             margin: 40px auto;
-            padding: 50px;
+            padding: 40px;
             background: rgba(30, 41, 59, 0.4);
             border-radius: 30px;
             border: 2px dashed #6366f1;
@@ -167,10 +305,10 @@
         .upload-btn {
             background: linear-gradient(135deg, #6366f1, #a855f7);
             border: none;
-            padding: 15px 40px;
+            padding: 12px 35px;
             border-radius: 50px;
             color: white;
-            font-size: 16px;
+            font-size: 14px;
             font-weight: bold;
             cursor: pointer;
             transition: 0.3s;
@@ -178,6 +316,14 @@
 
         .upload-btn:hover {
             transform: scale(1.05);
+        }
+
+        /* No Results */
+        .no-results {
+            text-align: center;
+            padding: 50px;
+            color: #64748b;
+            grid-column: 1 / -1;
         }
 
         /* Footer */
@@ -226,6 +372,7 @@
         @media (max-width: 768px) {
             .navbar {
                 padding: 15px 20px;
+                flex-direction: column;
             }
 
             .hero h1 {
@@ -234,11 +381,6 @@
 
             .tools-grid {
                 grid-template-columns: 1fr;
-            }
-
-            .upload-area {
-                padding: 30px;
-                margin: 20px;
             }
         }
     </style>
@@ -262,6 +404,33 @@
         <p>Free PDF tools with modern design. No signup required. Process your documents instantly.</p>
     </div>
 
+    <!-- Search Bar -->
+    <div class="search-section">
+        <div class="search-container">
+            <input type="text" class="search-box" id="searchInput" placeholder="🔍 Search tools... (e.g., merge, compress, convert)">
+            <span class="search-icon">🔍</span>
+            <div id="suggestions" class="suggestions-dropdown"></div>
+        </div>
+    </div>
+
+    <!-- Category Filter -->
+    <div class="category-filter" id="categoryFilter">
+        <button class="category-btn active" data-category="all">All Tools</button>
+        <button class="category-btn" data-category="processing">📄 PDF Processing</button>
+        <button class="category-btn" data-category="conversion">🖼️ Conversion</button>
+        <button class="category-btn" data-category="security">🔒 Security</button>
+        <button class="category-btn" data-category="organize">📑 Organize</button>
+    </div>
+
+    <!-- Tools Grid (Dynamic) -->
+    <div class="tools-grid" id="toolsGrid"></div>
+
+    <!-- Popular Tools Section -->
+    <div class="popular-section">
+        <h2>⭐ Popular This Week</h2>
+        <div class="popular-grid" id="popularGrid"></div>
+    </div>
+
     <!-- Drag & Drop Area -->
     <div class="upload-area" id="dropZone">
         <div style="font-size: 48px; margin-bottom: 15px;">📁</div>
@@ -269,55 +438,14 @@
         <p style="margin: 15px 0; color: #94a3b8;">Supports: PDF, JPG, PNG, DOCX</p>
         <input type="file" id="fileInput" multiple style="display: none;" accept=".pdf,.jpg,.png,.docx">
         <button class="upload-btn" onclick="document.getElementById('fileInput').click()">Choose Files</button>
-        <div id="selectedFiles" style="margin-top: 20px; font-size: 14px; color: #94a3b8;"></div>
-    </div>
-
-    <!-- Tools Grid (6 Core Tools) -->
-    <div class="tools-grid">
-        <div class="tool-card" onclick="selectTool('merge')">
-            <div class="tool-icon">🔄</div>
-            <h3>PDF Merger</h3>
-            <p>Gabung multiple PDF jadi satu file</p>
-            <span class="badge">Free</span>
-        </div>
-        <div class="tool-card" onclick="selectTool('compress')">
-            <div class="tool-icon">📦</div>
-            <h3>PDF Compressor</h3>
-            <p>Kecilkan size PDF sehingga 70%</p>
-            <span class="badge">Free</span>
-        </div>
-        <div class="tool-card" onclick="selectTool('convert')">
-            <div class="tool-icon">🖼️</div>
-            <h3>PDF to Image</h3>
-            <p>Convert PDF ke JPG/PNG</p>
-            <span class="badge">Free</span>
-        </div>
-        <div class="tool-card" onclick="selectTool('split')">
-            <div class="tool-icon">✂️</div>
-            <h3>PDF Splitter</h3>
-            <p>Potong PDF ikut halaman</p>
-            <span class="badge">Free</span>
-        </div>
-        <div class="tool-card" onclick="selectTool('rotate')">
-            <div class="tool-icon">🔄</div>
-            <h3>PDF Rotator</h3>
-            <p>Pusing orientation halaman</p>
-            <span class="badge">Free</span>
-        </div>
-        <div class="tool-card" onclick="selectTool('protect')">
-            <div class="tool-icon">🔒</div>
-            <h3>PDF Protector</h3>
-            <p>Add password ke PDF</p>
-            <span class="badge">Free</span>
-        </div>
+        <div id="selectedFiles" style="margin-top: 15px; font-size: 13px; color: #94a3b8;"></div>
     </div>
 
     <!-- Coming Soon Banner -->
     <div style="max-width: 800px; margin: 0 auto; padding: 0 20px;">
-        <div
-            style="background: rgba(245, 158, 11, 0.1); border: 1px solid #f59e0b; border-radius: 15px; padding: 15px; text-align: center;">
+        <div style="background: rgba(245, 158, 11, 0.1); border: 1px solid #f59e0b; border-radius: 15px; padding: 15px; text-align: center;">
             <span style="color: #f59e0b;">✨ Coming Next Week:</span>
-            <span style="color: #cbd5e1;"> PDF Watermark, Page Remover, PDF Organizer</span>
+            <span style="color: #cbd5e1;"> PDF to Excel, PDF Editor, PDF Compressor Advanced</span>
         </div>
     </div>
 
@@ -334,133 +462,246 @@
     <!-- Footer -->
     <div class="footer">
         <p>© 2026 QTools | Free PDF Tools for Everyone Fast, Secure, Private</p>
-        <p style="font-size: 12px; margin-top: 10px;">Files are processed locally - Your data never leaves your device
-        </p>
+        <p style="font-size: 12px; margin-top: 10px;">Files are processed locally - Your data never leaves your device</p>
     </div>
 
     <script>
+        // ============================================
+        // TOOLS DATABASE - SENANG TAMBAH TOOLS BARU!
+        // Cuma copy paste block dan edit je
+        // ============================================
+        const tools = [
+            // Existing 6 tools
+            { id: 1, name: "PDF Merger", icon: "🔄", description: "Gabung multiple PDF jadi satu file", category: "processing", popular: true, action: "merge" },
+            { id: 2, name: "PDF Compressor", icon: "📦", description: "Kecilkan size PDF sehingga 70%", category: "processing", popular: true, action: "compress" },
+            { id: 3, name: "PDF to Image", icon: "🖼️", description: "Convert PDF ke JPG/PNG", category: "conversion", popular: true, action: "convert" },
+            { id: 4, name: "PDF Splitter", icon: "✂️", description: "Potong PDF ikut halaman", category: "processing", popular: false, action: "split" },
+            { id: 5, name: "PDF Rotator", icon: "🔄", description: "Pusing orientation halaman", category: "processing", popular: false, action: "rotate" },
+            { id: 6, name: "PDF Protector", icon: "🔒", description: "Add password ke PDF", category: "security", popular: false, action: "protect" },
+            
+            // NEW TOOLS - TAMBAH 3 TOOLS BARU
+            { id: 7, name: "PDF Watermark", icon: "💧", description: "Tambah watermark text atau image", category: "security", popular: true, action: "watermark", isNew: true },
+            { id: 8, name: "PDF Page Remover", icon: "🗑️", description: "Buang halaman tertentu dari PDF", category: "organize", popular: false, action: "remove", isNew: true },
+            { id: 9, name: "PDF to Word", icon: "📝", description: "Convert PDF ke Word DOCX", category: "conversion", popular: true, action: "word", isNew: true }
+        ];
+
+        // Current state
+        let currentCategory = "all";
+        let currentSearch = "";
+        let currentFiles = [];
+
+        // Function to render tools based on filter
+        function renderTools() {
+            const toolsGrid = document.getElementById("toolsGrid");
+            
+            let filteredTools = tools;
+            
+            // Filter by category
+            if (currentCategory !== "all") {
+                filteredTools = filteredTools.filter(tool => tool.category === currentCategory);
+            }
+            
+            // Filter by search
+            if (currentSearch) {
+                const searchLower = currentSearch.toLowerCase();
+                filteredTools = filteredTools.filter(tool => 
+                    tool.name.toLowerCase().includes(searchLower) || 
+                    tool.description.toLowerCase().includes(searchLower)
+                );
+            }
+            
+            if (filteredTools.length === 0) {
+                toolsGrid.innerHTML = `<div class="no-results">😕 No tools found for "${currentSearch}". Try another search!</div>`;
+                return;
+            }
+            
+            toolsGrid.innerHTML = filteredTools.map(tool => `
+                <div class="tool-card" onclick="selectTool('${tool.action}')">
+                    <div class="tool-icon">${tool.icon}</div>
+                    <h3>${tool.name} ${tool.isNew ? '<span style="background:#ef4444; font-size:10px; padding:2px 6px; border-radius:10px; margin-left:5px;">NEW</span>' : ''}</h3>
+                    <p>${tool.description}</p>
+                    <span class="badge ${tool.popular ? 'popular' : ''}">${tool.popular ? '⭐ Popular' : 'Free'}</span>
+                </div>
+            `).join("");
+        }
+        
+        // Render popular tools
+        function renderPopularTools() {
+            const popularTools = tools.filter(tool => tool.popular === true);
+            const popularGrid = document.getElementById("popularGrid");
+            
+            popularGrid.innerHTML = popularTools.map(tool => `
+                <div class="popular-item" onclick="selectTool('${tool.action}')">
+                    <div style="font-size: 28px;">${tool.icon}</div>
+                    <div style="font-weight: bold; margin-top: 8px;">${tool.name}</div>
+                    <div style="font-size: 11px; color: #94a3b8;">${tool.description.substring(0, 35)}...</div>
+                </div>
+            `).join("");
+        }
+        
+        // Auto-suggestion function
+        function updateSuggestions() {
+            const searchValue = document.getElementById("searchInput").value.toLowerCase();
+            const suggestionsDiv = document.getElementById("suggestions");
+            
+            if (!searchValue) {
+                suggestionsDiv.style.display = "none";
+                return;
+            }
+            
+            const matches = tools.filter(tool => 
+                tool.name.toLowerCase().includes(searchValue) || 
+                tool.description.toLowerCase().includes(searchValue)
+            ).slice(0, 5); // Max 5 suggestions
+            
+            if (matches.length > 0) {
+                suggestionsDiv.innerHTML = matches.map(tool => `
+                    <div class="suggestion-item" onclick="selectSuggestion('${tool.name}')">
+                        <strong>${tool.icon}</strong> ${tool.name} - ${tool.description.substring(0, 40)}
+                    </div>
+                `).join("");
+                suggestionsDiv.style.display = "block";
+            } else {
+                suggestionsDiv.style.display = "none";
+            }
+        }
+        
+        function selectSuggestion(toolName) {
+            document.getElementById("searchInput").value = toolName;
+            currentSearch = toolName;
+            document.getElementById("suggestions").style.display = "none";
+            renderTools();
+        }
+        
         // File handling
         const fileInput = document.getElementById('fileInput');
         const dropZone = document.getElementById('dropZone');
         const selectedFilesDiv = document.getElementById('selectedFiles');
-        let currentFiles = [];
-
-        // Click on dropzone to trigger file input
-        dropZone.addEventListener('click', function (e) {
+        
+        dropZone.addEventListener('click', function(e) {
             if (e.target !== fileInput && !e.target.classList.contains('upload-btn')) {
                 fileInput.click();
             }
         });
-
-        // Drag and drop
-        dropZone.addEventListener('dragover', function (e) {
+        
+        dropZone.addEventListener('dragover', function(e) {
             e.preventDefault();
             dropZone.style.borderColor = '#a855f7';
             dropZone.style.background = 'rgba(99, 102, 241, 0.15)';
         });
-
-        dropZone.addEventListener('dragleave', function (e) {
+        
+        dropZone.addEventListener('dragleave', function(e) {
             e.preventDefault();
             dropZone.style.borderColor = '#6366f1';
             dropZone.style.background = 'rgba(30, 41, 59, 0.4)';
         });
-
-        dropZone.addEventListener('drop', function (e) {
+        
+        dropZone.addEventListener('drop', function(e) {
             e.preventDefault();
             dropZone.style.borderColor = '#6366f1';
             dropZone.style.background = 'rgba(30, 41, 59, 0.4)';
-
             const files = e.dataTransfer.files;
             handleFiles(files);
         });
-
-        fileInput.addEventListener('change', function (e) {
+        
+        fileInput.addEventListener('change', function(e) {
             handleFiles(e.target.files);
         });
-
+        
         function handleFiles(files) {
             currentFiles = Array.from(files);
             let fileNames = currentFiles.map(f => f.name).join(', ');
             selectedFilesDiv.innerHTML = `📄 Selected: ${fileNames}`;
-
             if (currentFiles.length > 0) {
-                // Auto-detect what tool to use based on file type
                 autoDetectTool();
             }
         }
-
+        
         function autoDetectTool() {
             const extensions = currentFiles.map(f => f.name.split('.').pop().toLowerCase());
-
             if (extensions.every(ext => ext === 'pdf')) {
                 if (currentFiles.length > 1) {
                     showToolPrompt('merge', 'PDF Merger', `${currentFiles.length} PDF files selected. Ready to merge!`);
                 } else {
                     showToolPrompt('compress', 'PDF Compressor', '1 PDF file selected. Ready to compress!');
                 }
-            } else if (extensions.some(ext => ext === 'pdf') && extensions.some(ext => ['jpg', 'jpeg', 'png'].includes(ext))) {
-                showToolPrompt('convert', 'PDF to Image', 'Mixed files detected. Convert PDF to images?');
             } else {
-                showToolPrompt('general', 'QTools', 'Files uploaded! Select a tool from below to process.');
+                showToolPrompt('general', 'QTools', 'Files uploaded! Select a tool below to process.');
             }
         }
-
-        function selectTool(toolName) {
+        
+        // Tool actions (expandable)
+        function selectTool(toolAction) {
             if (currentFiles.length === 0) {
                 showToolPrompt('error', 'No Files', 'Please upload files first by dragging or clicking the upload area.');
                 return;
             }
-
+            
             const toolMessages = {
-                merge: { title: '🔄 PDF Merger', msg: `Merging ${currentFiles.length} PDF files... (Demo - Premium feature for batch merge)` },
-                compress: { title: '📦 PDF Compressor', msg: 'Compressing your PDF... (Demo - Full compression in Pro version)' },
-                convert: { title: '🖼️ PDF to Image', msg: 'Converting PDF to images... (Demo - High quality in Pro version)' },
-                split: { title: '✂️ PDF Splitter', msg: 'Splitting PDF by pages... (Demo - Custom split in Pro version)' },
-                rotate: { title: '🔄 PDF Rotator', msg: 'Rotating PDF pages... (Demo - All angles in Pro version)' },
-                protect: { title: '🔒 PDF Protector', msg: 'Adding password protection... (Demo - Strong encryption in Pro version)' }
+                merge: { title: '🔄 PDF Merger', msg: `Merging ${currentFiles.length} PDF files... (Pro feature for batch merge)` },
+                compress: { title: '📦 PDF Compressor', msg: 'Compressing your PDF... (Full compression in Pro version)' },
+                convert: { title: '🖼️ PDF to Image', msg: 'Converting PDF to images... (High quality in Pro version)' },
+                split: { title: '✂️ PDF Splitter', msg: 'Splitting PDF by pages... (Custom split in Pro version)' },
+                rotate: { title: '🔄 PDF Rotator', msg: 'Rotating PDF pages... (All angles in Pro version)' },
+                protect: { title: '🔒 PDF Protector', msg: 'Adding password protection... (Strong encryption in Pro version)' },
+                watermark: { title: '💧 PDF Watermark', msg: 'Adding watermark to PDF... (Custom watermark in Pro version)' },
+                remove: { title: '🗑️ Page Remover', msg: 'Removing pages from PDF... (Select pages in Pro version)' },
+                word: { title: '📝 PDF to Word', msg: 'Converting PDF to Word... (Best quality in Pro version)' }
             };
-
-            const tool = toolMessages[toolName];
-            showToolPrompt(toolName, tool.title, tool.msg);
-
-            // Simulate processing
+            
+            const tool = toolMessages[toolAction] || { title: 'QTools', msg: 'Processing your file...' };
+            showToolPrompt(toolAction, tool.title, tool.msg);
+            
             setTimeout(() => {
                 document.getElementById('toolModal').style.display = 'none';
                 showPremiumPrompt();
             }, 2000);
         }
-
+        
         function showToolPrompt(toolId, title, message) {
             document.getElementById('modalIcon').innerHTML = title.split(' ')[0];
             document.getElementById('modalTitle').innerHTML = title;
             document.getElementById('modalMessage').innerHTML = message;
             document.getElementById('toolModal').style.display = 'flex';
         }
-
+        
         function showPremiumPrompt() {
             document.getElementById('modalIcon').innerHTML = '✨';
             document.getElementById('modalTitle').innerHTML = 'Want Full Access?';
             document.getElementById('modalMessage').innerHTML = 'Upgrade to QTools Pro for unlimited processing, no watermark, and priority support!';
             document.getElementById('toolModal').style.display = 'flex';
         }
-
+        
         function closeModal() {
             document.getElementById('toolModal').style.display = 'none';
         }
-
-        // Close modal when clicking outside
-        window.onclick = function (event) {
+        
+        window.onclick = function(event) {
             const modal = document.getElementById('toolModal');
             if (event.target === modal) {
                 modal.style.display = 'none';
             }
         }
-
-        // Track tool clicks for analytics
-        function trackToolClick(toolName) {
-            console.log(`Tool clicked: ${toolName}`);
-            // You can add Google Analytics or Plausible here later
-        }
+        
+        // Event listeners
+        document.getElementById("searchInput").addEventListener("input", function(e) {
+            currentSearch = e.target.value;
+            updateSuggestions();
+            renderTools();
+        });
+        
+        document.querySelectorAll(".category-btn").forEach(btn => {
+            btn.addEventListener("click", function() {
+                document.querySelectorAll(".category-btn").forEach(b => b.classList.remove("active"));
+                this.classList.add("active");
+                currentCategory = this.dataset.category;
+                renderTools();
+            });
+        });
+        
+        // Initialize
+        renderTools();
+        renderPopularTools();
     </script>
 </body>
 
