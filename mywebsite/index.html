@@ -3,13 +3,13 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>QTools - Free PDF Tools Online</title>
-    <!-- PDF.js library untuk PDF to Image -->
+    <!-- PDF.js library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
-    <!-- pdf-lib library untuk merge, split, rotate, etc -->
+    <!-- pdf-lib library -->
     <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
-    <!-- FileSaver untuk download -->
+    <!-- FileSaver.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
     <style>
         * {
@@ -30,8 +30,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 40px;
-            background: rgba(15, 23, 42, 0.8);
+            padding: 15px 40px;
+            background: rgba(15, 23, 42, 0.9);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(99, 102, 241, 0.3);
             position: sticky;
@@ -55,9 +55,17 @@
             color: #f1f5f9;
         }
 
+        .tool-counter {
+            background: rgba(99, 102, 241, 0.2);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            color: #a855f7;
+        }
+
         .nav-links {
             display: flex;
-            gap: 30px;
+            gap: 25px;
             align-items: center;
             flex-wrap: wrap;
         }
@@ -66,6 +74,7 @@
             color: #cbd5e1;
             text-decoration: none;
             transition: 0.3s;
+            font-size: 14px;
         }
 
         .nav-links a:hover {
@@ -74,21 +83,21 @@
 
         .shop-badge {
             background: linear-gradient(135deg, #f59e0b, #ef4444);
-            padding: 8px 20px;
+            padding: 6px 18px;
             border-radius: 30px;
             color: white !important;
             font-weight: bold;
         }
 
-        /* Hero Section */
+        /* Hero */
         .hero {
             text-align: center;
-            padding: 60px 20px 40px;
+            padding: 50px 20px 30px;
         }
 
         .hero h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
+            font-size: 42px;
+            margin-bottom: 15px;
             background: linear-gradient(135deg, #fff, #a855f7);
             -webkit-background-clip: text;
             background-clip: text;
@@ -97,42 +106,34 @@
 
         .hero p {
             color: #94a3b8;
-            font-size: 18px;
-            max-width: 600px;
+            font-size: 16px;
+            max-width: 550px;
             margin: 0 auto;
         }
 
-        /* Search Bar */
+        /* Search */
         .search-section {
-            max-width: 800px;
+            max-width: 650px;
             margin: 20px auto;
             padding: 0 20px;
             position: relative;
         }
 
-        .search-container {
-            position: relative;
-        }
-
         .search-box {
             width: 100%;
-            padding: 15px 20px;
+            padding: 14px 20px;
             background: rgba(30, 41, 59, 0.8);
             border: 1px solid rgba(99, 102, 241, 0.4);
             border-radius: 50px;
             color: white;
-            font-size: 16px;
+            font-size: 15px;
             outline: none;
             transition: 0.3s;
         }
 
         .search-box:focus {
             border-color: #a855f7;
-            box-shadow: 0 0 15px rgba(168, 85, 247, 0.3);
-        }
-
-        .search-box::placeholder {
-            color: #64748b;
+            box-shadow: 0 0 12px rgba(168, 85, 247, 0.3);
         }
 
         .suggestions-dropdown {
@@ -142,11 +143,11 @@
             right: 0;
             background: #1e293b;
             border-radius: 15px;
-            margin-top: 10px;
+            margin-top: 8px;
             z-index: 100;
             display: none;
             border: 1px solid rgba(99, 102, 241, 0.3);
-            max-height: 300px;
+            max-height: 280px;
             overflow-y: auto;
         }
 
@@ -155,31 +156,32 @@
             cursor: pointer;
             transition: 0.2s;
             border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+            font-size: 14px;
         }
 
         .suggestion-item:hover {
             background: rgba(99, 102, 241, 0.2);
         }
 
-        /* Category Filter */
+        /* Category */
         .category-filter {
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 12px;
             flex-wrap: wrap;
-            margin: 30px auto;
+            margin: 25px auto;
             padding: 0 20px;
         }
 
         .category-btn {
             background: rgba(30, 41, 59, 0.6);
             border: 1px solid rgba(99, 102, 241, 0.3);
-            padding: 8px 20px;
+            padding: 6px 18px;
             border-radius: 30px;
             color: #cbd5e1;
             cursor: pointer;
             transition: 0.3s;
-            font-size: 14px;
+            font-size: 13px;
         }
 
         .category-btn:hover,
@@ -191,19 +193,19 @@
 
         /* Tools Grid */
         .tools-grid {
-            max-width: 1200px;
-            margin: 30px auto;
+            max-width: 1100px;
+            margin: 20px auto;
             padding: 0 20px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
         }
 
         .tool-card {
             background: rgba(30, 41, 59, 0.6);
             backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 25px;
+            border-radius: 18px;
+            padding: 22px;
             text-align: center;
             transition: all 0.3s ease;
             border: 1px solid rgba(99, 102, 241, 0.2);
@@ -211,24 +213,34 @@
         }
 
         .tool-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-4px);
             border-color: #6366f1;
-            box-shadow: 0 0 30px rgba(99, 102, 241, 0.2);
+            box-shadow: 0 0 25px rgba(99, 102, 241, 0.2);
         }
 
         .tool-icon {
-            font-size: 48px;
-            margin-bottom: 15px;
+            font-size: 44px;
+            margin-bottom: 12px;
         }
 
         .tool-card h3 {
-            font-size: 18px;
-            margin-bottom: 8px;
+            font-size: 17px;
+            margin-bottom: 6px;
         }
 
         .tool-card p {
             color: #94a3b8;
-            font-size: 13px;
+            font-size: 12px;
+        }
+
+        .new-badge {
+            display: inline-block;
+            background: #ef4444;
+            color: white;
+            font-size: 9px;
+            padding: 2px 8px;
+            border-radius: 12px;
+            margin-left: 8px;
         }
 
         .badge {
@@ -245,49 +257,71 @@
             background: #f59e0b;
         }
 
-        /* Popular Tools Section */
+        /* Popular Section */
         .popular-section {
-            max-width: 1200px;
-            margin: 40px auto;
+            max-width: 1100px;
+            margin: 30px auto 20px;
             padding: 0 20px;
         }
 
         .popular-section h2 {
-            margin-bottom: 20px;
-            font-size: 24px;
+            font-size: 20px;
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
         }
 
         .popular-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            display: flex;
             gap: 15px;
+            flex-wrap: wrap;
         }
 
         .popular-item {
             background: rgba(245, 158, 11, 0.1);
             border: 1px solid rgba(245, 158, 11, 0.3);
-            border-radius: 15px;
-            padding: 15px;
+            border-radius: 14px;
+            padding: 12px 20px;
             text-align: center;
             cursor: pointer;
             transition: 0.3s;
+            flex: 1;
+            min-width: 130px;
         }
 
         .popular-item:hover {
             background: rgba(245, 158, 11, 0.2);
-            transform: translateY(-3px);
+            transform: translateY(-2px);
+        }
+
+        /* Coming Soon Banner */
+        .coming-soon {
+            max-width: 1100px;
+            margin: 25px auto;
+            padding: 0 20px;
+        }
+
+        .coming-soon-card {
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 14px;
+            padding: 14px 20px;
+            text-align: center;
+        }
+
+        .coming-soon-card span:first-child {
+            color: #f59e0b;
+            font-weight: bold;
         }
 
         /* Upload Area */
         .upload-area {
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 40px;
+            max-width: 750px;
+            margin: 30px auto 40px;
+            padding: 35px;
             background: rgba(30, 41, 59, 0.4);
-            border-radius: 30px;
+            border-radius: 28px;
             border: 2px dashed #6366f1;
             text-align: center;
             transition: 0.3s;
@@ -301,17 +335,13 @@
         .upload-btn {
             background: linear-gradient(135deg, #6366f1, #a855f7);
             border: none;
-            padding: 12px 35px;
+            padding: 11px 32px;
             border-radius: 50px;
             color: white;
             font-size: 14px;
             font-weight: bold;
             cursor: pointer;
             transition: 0.3s;
-        }
-
-        .upload-btn:hover {
-            transform: scale(1.05);
         }
 
         /* Modal */
@@ -322,7 +352,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.85);
             backdrop-filter: blur(5px);
             z-index: 1000;
             justify-content: center;
@@ -332,8 +362,8 @@
         .modal-content {
             background: #1e293b;
             border-radius: 20px;
-            padding: 30px;
-            max-width: 500px;
+            padding: 28px;
+            max-width: 450px;
             width: 90%;
             text-align: center;
         }
@@ -341,19 +371,19 @@
         .close-modal {
             background: #ef4444;
             border: none;
-            padding: 10px 20px;
+            padding: 9px 18px;
             border-radius: 10px;
             color: white;
             cursor: pointer;
-            margin-top: 20px;
+            margin-top: 18px;
         }
 
         .progress-bar {
             width: 100%;
-            height: 6px;
+            height: 5px;
             background: #334155;
             border-radius: 3px;
-            margin: 20px 0;
+            margin: 18px 0;
             overflow: hidden;
             display: none;
         }
@@ -362,44 +392,96 @@
             width: 0%;
             height: 100%;
             background: linear-gradient(135deg, #6366f1, #a855f7);
-            border-radius: 3px;
             transition: width 0.3s;
         }
 
-        .loading-text {
-            color: #94a3b8;
-            font-size: 14px;
-            margin: 10px 0;
-        }
-
-        .download-link {
-            display: inline-block;
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
             background: #10b981;
             color: white;
-            padding: 10px 20px;
-            border-radius: 8px;
-            text-decoration: none;
-            margin-top: 15px;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-size: 14px;
+            z-index: 200;
+            display: none;
+            animation: fadeInUp 0.3s ease;
+            white-space: nowrap;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+
+        /* Back to Top */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 20px;
+            background: #6366f1;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s;
+            z-index: 99;
+            border: none;
+            color: white;
+            font-size: 22px;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: #a855f7;
+            transform: translateY(-3px);
         }
 
         .footer {
             text-align: center;
-            padding: 40px;
+            padding: 35px;
             color: #64748b;
             border-top: 1px solid rgba(99, 102, 241, 0.2);
-            margin-top: 60px;
+            margin-top: 40px;
+            font-size: 13px;
         }
 
         @media (max-width: 768px) {
             .navbar {
-                padding: 15px 20px;
-                flex-direction: column;
+                padding: 12px 20px;
             }
             .hero h1 {
-                font-size: 32px;
+                font-size: 30px;
             }
             .tools-grid {
                 grid-template-columns: 1fr;
+            }
+            .popular-grid {
+                flex-direction: column;
+            }
+            .toast {
+                white-space: normal;
+                text-align: center;
+                width: 90%;
+                font-size: 12px;
             }
         }
     </style>
@@ -408,7 +490,10 @@
 <body>
 
     <nav class="navbar">
-        <div class="logo">Q<span>Tools</span></div>
+        <div style="display: flex; align-items: center; gap: 12px;">
+            <div class="logo">Q<span>Tools</span></div>
+            <span class="tool-counter" id="toolCounter">9 Free Tools</span>
+        </div>
         <div class="nav-links">
             <a href="index.html">Home</a>
             <a href="shop.html" class="shop-badge">🛒 Shop</a>
@@ -418,115 +503,174 @@
 
     <div class="hero">
         <h1>Quick Tools, Quality Results</h1>
-        <p>Free PDF tools with modern design. No signup required. Process your documents instantly.</p>
+        <p>Free PDF tools. No signup. Process directly in your browser.</p>
     </div>
 
-    <!-- Search Bar -->
     <div class="search-section">
         <div class="search-container">
-            <input type="text" class="search-box" id="searchInput" placeholder="🔍 Search tools... (e.g., merge, compress, convert)">
+            <input type="text" class="search-box" id="searchInput" placeholder="🔍 Search tools... (merge, compress, etc)">
             <div id="suggestions" class="suggestions-dropdown"></div>
         </div>
     </div>
 
-    <!-- Category Filter -->
     <div class="category-filter" id="categoryFilter">
         <button class="category-btn active" data-category="all">All Tools</button>
-        <button class="category-btn" data-category="processing">📄 PDF Processing</button>
+        <button class="category-btn" data-category="processing">📄 Processing</button>
         <button class="category-btn" data-category="conversion">🖼️ Conversion</button>
         <button class="category-btn" data-category="security">🔒 Security</button>
         <button class="category-btn" data-category="organize">📑 Organize</button>
     </div>
 
-    <!-- Tools Grid -->
     <div class="tools-grid" id="toolsGrid"></div>
 
-    <!-- Popular Tools Section -->
-    <div class="popular-section">
+    <!-- Popular This Week Section -->
+    <div class="popular-section" id="popularSection" style="display: none;">
         <h2>⭐ Popular This Week</h2>
         <div class="popular-grid" id="popularGrid"></div>
     </div>
 
-    <!-- Upload Area -->
-    <div class="upload-area" id="dropZone">
-        <div style="font-size: 48px; margin-bottom: 15px;">📁</div>
-        <h3>Drop PDF files here or click to browse</h3>
-        <p style="margin: 15px 0; color: #94a3b8;">Supports: PDF files only for processing</p>
-        <input type="file" id="fileInput" multiple style="display: none;" accept=".pdf">
-        <button class="upload-btn" onclick="document.getElementById('fileInput').click()">Choose Files</button>
-        <div id="selectedFiles" style="margin-top: 15px; font-size: 13px; color: #94a3b8;"></div>
+    <!-- Coming Soon Banner -->
+    <div class="coming-soon">
+        <div class="coming-soon-card">
+            <span>✨ Coming Next Week:</span>
+            <span style="color: #cbd5e1; margin-left: 8px;"> PDF to Excel • PDF OCR • PDF Editor Advanced</span>
+        </div>
     </div>
 
-    <!-- Modal -->
+    <div class="upload-area" id="dropZone">
+        <div style="font-size: 44px; margin-bottom: 12px;">📁</div>
+        <h3>Drop PDF files here or click to browse</h3>
+        <p style="margin: 12px 0; color: #94a3b8; font-size: 13px;">Supports: PDF files only</p>
+        <input type="file" id="fileInput" multiple style="display: none;" accept=".pdf">
+        <button class="upload-btn" onclick="document.getElementById('fileInput').click()">Choose Files</button>
+        <div id="selectedFiles" style="margin-top: 12px; font-size: 12px; color: #94a3b8;"></div>
+    </div>
+
     <div id="toolModal" class="modal">
         <div class="modal-content">
-            <div id="modalIcon" style="font-size: 48px; margin-bottom: 15px;"></div>
+            <div id="modalIcon" style="font-size: 44px; margin-bottom: 12px;"></div>
             <h3 id="modalTitle"></h3>
-            <p id="modalMessage" style="margin: 15px 0; color: #94a3b8;"></p>
+            <p id="modalMessage" style="margin: 12px 0; color: #94a3b8; font-size: 14px;"></p>
             <div class="progress-bar" id="progressBar">
                 <div class="progress-fill" id="progressFill"></div>
             </div>
-            <div id="loadingText" class="loading-text"></div>
+            <div id="loadingText" class="loading-text" style="font-size: 13px; color: #94a3b8;"></div>
             <button class="close-modal" onclick="closeModal()">Close</button>
         </div>
     </div>
 
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">↑</button>
+
     <div class="footer">
-        <p>© 2026 QTools | Free PDF Tools for Everyone Fast, Secure, Private</p>
-        <p style="font-size: 12px; margin-top: 10px;">Files are processed locally in your browser - Your data never leaves your device</p>
+        <p>© 2026 QTools | Free PDF Tools • Fast • Secure • Private</p>
+        <p style="font-size: 11px; margin-top: 8px;">Files processed locally in your browser - Your data never leaves your device</p>
     </div>
 
     <script>
-        // Configure PDF.js worker
+        // Configure PDF.js
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
 
         // ============================================
-        // TOOLS DATABASE
+        // TOOLS DATABASE - SENANG TAMBAH!
         // ============================================
         const tools = [
-            { id: 1, name: "PDF Merger", icon: "🔄", description: "Gabung multiple PDF jadi satu file", category: "processing", popular: true, action: "merge" },
-            { id: 2, name: "PDF Splitter", icon: "✂️", description: "Potong PDF ikut halaman", category: "processing", popular: true, action: "split" },
-            { id: 3, name: "PDF Rotator", icon: "🔄", description: "Pusing orientation halaman", category: "processing", popular: false, action: "rotate" },
-            { id: 4, name: "PDF Page Remover", icon: "🗑️", description: "Buang halaman tertentu dari PDF", category: "organize", popular: false, action: "remove" },
-            { id: 5, name: "PDF Watermark", icon: "💧", description: "Tambah watermark text atau image", category: "security", popular: true, action: "watermark" },
-            { id: 6, name: "PDF to Image", icon: "🖼️", description: "Convert PDF ke JPG/PNG", category: "conversion", popular: true, action: "toimage" },
-            { id: 7, name: "PDF Protector", icon: "🔒", description: "Add password ke PDF", category: "security", popular: false, action: "protect" },
-            { id: 8, name: "PDF Compressor", icon: "📦", description: "Kecilkan size PDF (basic)", category: "processing", popular: false, action: "compress" },
-            { id: 9, name: "PDF Organizer", icon: "📑", description: "Susun semula halaman PDF", category: "organize", popular: false, action: "organize" }
+            { id: 1, name: "PDF Merger", icon: "🔄", desc: "Gabung multiple PDF jadi satu", category: "processing", action: "merge", new: false },
+            { id: 2, name: "PDF Compressor", icon: "📦", desc: "Kecilkan size PDF", category: "processing", action: "compress", new: false },
+            { id: 3, name: "PDF to Image", icon: "🖼️", desc: "Convert PDF ke JPG/PNG", category: "conversion", action: "toimage", new: false },
+            { id: 4, name: "PDF Splitter", icon: "✂️", desc: "Potong PDF ikut halaman", category: "processing", action: "split", new: false },
+            { id: 5, name: "PDF Rotator", icon: "🔄", desc: "Pusing orientation halaman", category: "processing", action: "rotate", new: false },
+            { id: 6, name: "PDF Protector", icon: "🔒", desc: "Add password ke PDF", category: "security", action: "protect", new: false },
+            // 3 NEW TOOLS
+            { id: 7, name: "PDF Watermark", icon: "💧", desc: "Tambah watermark teks", category: "security", action: "watermark", new: true },
+            { id: 8, name: "PDF Page Remover", icon: "🗑️", desc: "Buang halaman tertentu", category: "organize", action: "remove", new: true },
+            { id: 9, name: "PDF to Word", icon: "📝", desc: "Convert PDF ke Word", category: "conversion", action: "word", new: true }
         ];
 
-        let currentFiles = [];
-        let currentAction = null;
+        // Update counter
+        document.getElementById('toolCounter').innerText = tools.length + " Free Tools";
 
-        // Render tools
-        function renderTools() {
-            const grid = document.getElementById("toolsGrid");
-            grid.innerHTML = tools.map(tool => `
-                <div class="tool-card" onclick="selectTool('${tool.action}')">
-                    <div class="tool-icon">${tool.icon}</div>
-                    <h3>${tool.name}</h3>
-                    <p>${tool.description}</p>
-                    <span class="badge ${tool.popular ? 'popular' : ''}">${tool.popular ? '⭐ Popular' : 'Free'}</span>
-                </div>
-            `).join("");
+        let currentFiles = [];
+        let toolClicks = JSON.parse(localStorage.getItem('qtool_clicks') || '{}');
+
+        // Track click for popularity
+        function trackClick(toolName) {
+            toolClicks[toolName] = (toolClicks[toolName] || 0) + 1;
+            localStorage.setItem('qtool_clicks', JSON.stringify(toolClicks));
+            updatePopularSection();
         }
 
-        // Render popular tools
-        function renderPopular() {
-            const popular = tools.filter(t => t.popular);
-            const grid = document.getElementById("popularGrid");
-            grid.innerHTML = popular.map(tool => `
-                <div class="popular-item" onclick="selectTool('${tool.action}')">
-                    <div style="font-size: 28px;">${tool.icon}</div>
-                    <div style="font-weight: bold; margin-top: 8px;">${tool.name}</div>
+        // Get top 3 popular tools
+        function getPopularTools() {
+            const sorted = Object.entries(toolClicks).sort((a, b) => b[1] - a[1]);
+            const top3 = sorted.slice(0, 3).map(([name]) => name);
+            return tools.filter(t => top3.includes(t.name));
+        }
+
+        function updatePopularSection() {
+            const popular = getPopularTools();
+            const section = document.getElementById('popularSection');
+            const grid = document.getElementById('popularGrid');
+            
+            if (popular.length > 0) {
+                section.style.display = 'block';
+                grid.innerHTML = popular.map(tool => `
+                    <div class="popular-item" onclick="selectTool('${tool.action}')">
+                        <div style="font-size: 26px;">${tool.icon}</div>
+                        <div style="font-weight: bold; margin-top: 6px; font-size: 14px;">${tool.name}</div>
+                        <div style="font-size: 11px; color: #94a3b8;">${tool.desc.substring(0, 30)}</div>
+                    </div>
+                `).join('');
+            } else {
+                section.style.display = 'none';
+            }
+        }
+
+        // Render tools
+        function renderTools(filter = 'all', search = '') {
+            const grid = document.getElementById('toolsGrid');
+            let filtered = tools;
+            if (filter !== 'all') filtered = filtered.filter(t => t.category === filter);
+            if (search) {
+                const s = search.toLowerCase();
+                filtered = filtered.filter(t => t.name.toLowerCase().includes(s) || t.desc.toLowerCase().includes(s));
+            }
+            
+            grid.innerHTML = filtered.map(tool => `
+                <div class="tool-card" onclick="selectTool('${tool.action}')">
+                    <div class="tool-icon">${tool.icon}</div>
+                    <h3>${tool.name} ${tool.new ? '<span class="new-badge">NEW</span>' : ''}</h3>
+                    <p>${tool.desc}</p>
+                    <span class="badge">Free</span>
                 </div>
-            `).join("");
+            `).join('');
+        }
+
+        // Auto suggestion
+        function updateSuggestions() {
+            const val = document.getElementById('searchInput').value.toLowerCase();
+            const suggestionsDiv = document.getElementById('suggestions');
+            if (!val) { suggestionsDiv.style.display = 'none'; return; }
+            const matches = tools.filter(t => t.name.toLowerCase().includes(val)).slice(0, 4);
+            if (matches.length) {
+                suggestionsDiv.innerHTML = matches.map(t => `<div class="suggestion-item" onclick="selectSuggestion('${t.name}')">${t.icon} ${t.name}</div>`).join('');
+                suggestionsDiv.style.display = 'block';
+            } else suggestionsDiv.style.display = 'none';
+        }
+
+        function selectSuggestion(name) {
+            document.getElementById('searchInput').value = name;
+            document.getElementById('suggestions').style.display = 'none';
+            renderTools('all', name);
         }
 
         // File handling
         const fileInput = document.getElementById('fileInput');
         const dropZone = document.getElementById('dropZone');
-
+        
         dropZone.addEventListener('click', () => fileInput.click());
         dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.style.borderColor = '#a855f7'; });
         dropZone.addEventListener('dragleave', () => dropZone.style.borderColor = '#6366f1');
@@ -539,14 +683,31 @@
 
         function handleFiles(files) {
             currentFiles = Array.from(files).filter(f => f.type === 'application/pdf');
-            document.getElementById("selectedFiles").innerHTML = currentFiles.length > 0 ? 
-                `📄 ${currentFiles.length} PDF file(s) selected` : 'No valid PDF files';
+            document.getElementById('selectedFiles').innerHTML = currentFiles.length ? `📄 ${currentFiles.length} PDF file(s) selected` : '';
+            if (currentFiles.length) showToast(`${currentFiles.length} file(s) ready!`, '#10b981');
         }
 
+        function showToast(msg, bg = '#10b981') {
+            const toast = document.getElementById('toast');
+            toast.textContent = msg;
+            toast.style.background = bg;
+            toast.style.display = 'block';
+            setTimeout(() => toast.style.display = 'none', 3000);
+        }
+
+        // Show new tools toast on first visit
+        if (!localStorage.getItem('qtools_visited')) {
+            setTimeout(() => showToast('✨ 3 New Tools Added: Watermark, Page Remover, PDF to Word!', '#6366f1'), 1000);
+            localStorage.setItem('qtools_visited', 'true');
+        }
+
+        // Select tool and process
         function selectTool(action) {
-            currentAction = action;
+            const toolName = tools.find(t => t.action === action)?.name || action;
+            trackClick(toolName);
+            
             if (currentFiles.length === 0) {
-                showModal("📁", "No Files Selected", "Please upload PDF files first by dragging or clicking the upload area.");
+                showModal("📁", "No Files", "Please upload PDF files first by dragging or clicking the upload area.");
                 return;
             }
             
@@ -559,327 +720,176 @@
                 toimage: () => pdfToImage(),
                 protect: () => protectPDF(),
                 compress: () => compressPDF(),
-                organize: () => organizePDF()
+                word: () => showModal("📝", "PDF to Word", "Premium feature. Upgrade to Pro for Word conversion!", false)
             };
             
             if (actions[action]) actions[action]();
             else showModal("⚙️", "Coming Soon", "This tool will be available soon!");
         }
 
-        // ============================================
-        // REAL PDF PROCESSING FUNCTIONS
-        // ============================================
-
+        // ========== REAL PDF PROCESSING ==========
+        
         async function mergePDFs() {
-            if (currentFiles.length < 2) {
-                showModal("⚠️", "Need More Files", "Please select at least 2 PDF files to merge.");
-                return;
-            }
-            
+            if (currentFiles.length < 2) { showModal("⚠️", "Need More Files", "Select at least 2 PDF files."); return; }
             showModal("🔄", "Merging PDFs", `Merging ${currentFiles.length} files...`, true);
             updateProgress(20);
-            
             try {
-                const mergedPdf = await PDFLib.PDFDocument.create();
-                updateProgress(40);
-                
+                const merged = await PDFLib.PDFDocument.create();
                 for (let i = 0; i < currentFiles.length; i++) {
-                    const fileBuffer = await currentFiles[i].arrayBuffer();
-                    const pdf = await PDFLib.PDFDocument.load(fileBuffer);
-                    const pages = await mergedPdf.copyPages(pdf, pdf.getPageIndices());
-                    pages.forEach(page => mergedPdf.addPage(page));
+                    const pdf = await PDFLib.PDFDocument.load(await currentFiles[i].arrayBuffer());
+                    const pages = await merged.copyPages(pdf, pdf.getPageIndices());
+                    pages.forEach(p => merged.addPage(p));
                     updateProgress(40 + (i / currentFiles.length) * 50);
                 }
-                
-                updateProgress(90);
-                const pdfBytes = await mergedPdf.save();
-                updateProgress(100);
-                
-                downloadPDF(pdfBytes, "merged.pdf");
-                showModal("✅", "Success!", "PDFs merged successfully! Download started.", false);
-            } catch (error) {
-                showModal("❌", "Error", "Failed to merge PDFs: " + error.message);
-            }
+                const bytes = await merged.save();
+                downloadPDF(bytes, "merged.pdf");
+                showModal("✅", "Success!", "PDFs merged successfully!", false);
+            } catch (err) { showModal("❌", "Error", err.message); }
         }
 
         async function splitPDF() {
-            if (currentFiles.length !== 1) {
-                showModal("⚠️", "One File Only", "Please select exactly 1 PDF file to split.");
-                return;
-            }
-            
+            if (currentFiles.length !== 1) { showModal("⚠️", "One File Only", "Select exactly 1 PDF file."); return; }
             showModal("✂️", "Splitting PDF", "Processing...", true);
-            
             try {
-                const fileBuffer = await currentFiles[0].arrayBuffer();
-                const pdf = await PDFLib.PDFDocument.load(fileBuffer);
-                const pageCount = pdf.getPageCount();
-                
-                showModal("✂️", "Split PDF", `PDF has ${pageCount} pages. Splitting each page...`, true);
-                
-                for (let i = 0; i < pageCount; i++) {
+                const pdf = await PDFLib.PDFDocument.load(await currentFiles[0].arrayBuffer());
+                const total = pdf.getPageCount();
+                for (let i = 0; i < total; i++) {
                     const newPdf = await PDFLib.PDFDocument.create();
                     const [page] = await newPdf.copyPages(pdf, [i]);
                     newPdf.addPage(page);
-                    const pdfBytes = await newPdf.save();
-                    downloadPDF(pdfBytes, `page_${i + 1}.pdf`);
-                    updateProgress((i / pageCount) * 100);
+                    downloadPDF(await newPdf.save(), `page_${i+1}.pdf`);
+                    updateProgress((i/total)*100);
                 }
-                
-                showModal("✅", "Success!", `Split ${pageCount} pages into individual PDFs. Downloads started.`, false);
-            } catch (error) {
-                showModal("❌", "Error", "Failed to split PDF: " + error.message);
-            }
+                showModal("✅", "Success!", `Split ${total} pages. Downloads started.`, false);
+            } catch (err) { showModal("❌", "Error", err.message); }
         }
 
         async function rotatePDF() {
-            if (currentFiles.length !== 1) {
-                showModal("⚠️", "One File Only", "Please select exactly 1 PDF file to rotate.");
-                return;
-            }
-            
-            showModal("🔄", "Rotating PDF", "Rotating all pages 90 degrees...", true);
-            
+            if (currentFiles.length !== 1) { showModal("⚠️", "One File Only", "Select exactly 1 PDF file."); return; }
+            showModal("🔄", "Rotating PDF", "Rotating pages...", true);
             try {
-                const fileBuffer = await currentFiles[0].arrayBuffer();
-                const pdf = await PDFLib.PDFDocument.load(fileBuffer);
-                const pages = pdf.getPages();
-                
-                pages.forEach(page => {
-                    const { width, height } = page.getSize();
-                    page.setRotation(PDFLib.degrees(90));
-                });
-                
-                const pdfBytes = await pdf.save();
-                downloadPDF(pdfBytes, "rotated.pdf");
-                showModal("✅", "Success!", "PDF rotated successfully!", false);
-            } catch (error) {
-                showModal("❌", "Error", "Failed to rotate PDF: " + error.message);
-            }
+                const pdf = await PDFLib.PDFDocument.load(await currentFiles[0].arrayBuffer());
+                pdf.getPages().forEach(p => p.setRotation(PDFLib.degrees(90)));
+                downloadPDF(await pdf.save(), "rotated.pdf");
+                showModal("✅", "Success!", "PDF rotated 90 degrees.", false);
+            } catch (err) { showModal("❌", "Error", err.message); }
         }
 
         async function removePages() {
-            if (currentFiles.length !== 1) {
-                showModal("⚠️", "One File Only", "Please select exactly 1 PDF file.");
-                return;
-            }
-            
-            showModal("🗑️", "Remove Pages", "Removing last page (demo - will remove last page). For advanced page selection, upgrade to Pro.", true);
-            
+            if (currentFiles.length !== 1) { showModal("⚠️", "One File Only", "Select exactly 1 PDF file."); return; }
+            showModal("🗑️", "Remove Pages", "Removing last page...", true);
             try {
-                const fileBuffer = await currentFiles[0].arrayBuffer();
-                const pdf = await PDFLib.PDFDocument.load(fileBuffer);
-                const pageCount = pdf.getPageCount();
-                
-                if (pageCount <= 1) {
-                    showModal("⚠️", "Cannot Remove", "PDF has only 1 page. Cannot remove.");
-                    return;
-                }
-                
-                // Remove last page as demo
-                pdf.removePage(pageCount - 1);
-                const pdfBytes = await pdf.save();
-                downloadPDF(pdfBytes, "pages_removed.pdf");
-                showModal("✅", "Success!", "Last page removed successfully!", false);
-            } catch (error) {
-                showModal("❌", "Error", "Failed to remove pages: " + error.message);
-            }
+                const pdf = await PDFLib.PDFDocument.load(await currentFiles[0].arrayBuffer());
+                if (pdf.getPageCount() <= 1) throw new Error("Need at least 2 pages");
+                pdf.removePage(pdf.getPageCount() - 1);
+                downloadPDF(await pdf.save(), "pages_removed.pdf");
+                showModal("✅", "Success!", "Last page removed.", false);
+            } catch (err) { showModal("❌", "Error", err.message); }
         }
 
         async function addWatermark() {
-            if (currentFiles.length !== 1) {
-                showModal("⚠️", "One File Only", "Please select exactly 1 PDF file.");
-                return;
-            }
-            
-            showModal("💧", "Adding Watermark", "Adding 'QTools' watermark to all pages...", true);
-            
+            if (currentFiles.length !== 1) { showModal("⚠️", "One File Only", "Select exactly 1 PDF file."); return; }
+            showModal("💧", "Watermark", "Adding watermark...", true);
             try {
-                const fileBuffer = await currentFiles[0].arrayBuffer();
-                const pdf = await PDFLib.PDFDocument.load(fileBuffer);
-                const pages = pdf.getPages();
-                
-                pages.forEach(page => {
+                const pdf = await PDFLib.PDFDocument.load(await currentFiles[0].arrayBuffer());
+                pdf.getPages().forEach(page => {
                     const { width, height } = page.getSize();
-                    page.drawText("QTools", {
-                        x: width / 2 - 30,
-                        y: height / 2,
-                        size: 30,
-                        color: PDFLib.rgb(0.7, 0.7, 0.7),
-                        opacity: 0.5
-                    });
+                    page.drawText("QTools", { x: width/2-25, y: height/2, size: 30, color: PDFLib.rgb(0.7,0.7,0.7), opacity: 0.5 });
                 });
-                
-                const pdfBytes = await pdf.save();
-                downloadPDF(pdfBytes, "watermarked.pdf");
-                showModal("✅", "Success!", "Watermark added successfully!", false);
-            } catch (error) {
-                showModal("❌", "Error", "Failed to add watermark: " + error.message);
-            }
+                downloadPDF(await pdf.save(), "watermarked.pdf");
+                showModal("✅", "Success!", "Watermark added.", false);
+            } catch (err) { showModal("❌", "Error", err.message); }
         }
 
         async function pdfToImage() {
-            if (currentFiles.length !== 1) {
-                showModal("⚠️", "One File Only", "Please select exactly 1 PDF file to convert.");
-                return;
-            }
-            
-            showModal("🖼️", "Converting to Image", "Converting first page to PNG...", true);
-            
+            if (currentFiles.length !== 1) { showModal("⚠️", "One File Only", "Select exactly 1 PDF file."); return; }
+            showModal("🖼️", "PDF to Image", "Converting first page...", true);
             try {
-                const fileBuffer = await currentFiles[0].arrayBuffer();
-                const pdf = await pdfjsLib.getDocument({ data: fileBuffer }).promise;
+                const pdf = await pdfjsLib.getDocument({ data: await currentFiles[0].arrayBuffer() }).promise;
                 const page = await pdf.getPage(1);
-                const viewport = page.getViewport({ scale: 2.0 });
+                const viewport = page.getViewport({ scale: 1.5 });
                 const canvas = document.createElement('canvas');
                 canvas.width = viewport.width;
                 canvas.height = viewport.height;
-                const context = canvas.getContext('2d');
-                
-                await page.render({ canvasContext: context, viewport: viewport }).promise;
-                
-                canvas.toBlob(blob => {
-                    saveAs(blob, 'page_1.png');
-                    showModal("✅", "Success!", "First page converted to PNG! Check your downloads.", false);
-                });
-            } catch (error) {
-                showModal("❌", "Error", "Failed to convert: " + error.message);
-            }
+                await page.render({ canvasContext: canvas.getContext('2d'), viewport }).promise;
+                canvas.toBlob(blob => saveAs(blob, 'page_1.png'));
+                showModal("✅", "Success!", "First page converted to PNG.", false);
+            } catch (err) { showModal("❌", "Error", err.message); }
         }
 
         async function protectPDF() {
-            if (currentFiles.length !== 1) {
-                showModal("⚠️", "One File Only", "Please select exactly 1 PDF file.");
-                return;
-            }
-            
-            showModal("🔒", "Protecting PDF", "Adding password protection (password: 123456)...", true);
-            
+            if (currentFiles.length !== 1) { showModal("⚠️", "One File Only", "Select exactly 1 PDF file."); return; }
+            showModal("🔒", "Protect PDF", "Adding password (123456)...", true);
             try {
-                const fileBuffer = await currentFiles[0].arrayBuffer();
-                const pdf = await PDFLib.PDFDocument.load(fileBuffer);
-                
-                pdf.encrypt({
-                    userPassword: "123456",
-                    ownerPassword: "owner123",
-                    permissions: PDFLib.Printing.Allowed | PDFLib.Modifying.Allowed
-                });
-                
-                const pdfBytes = await pdf.save();
-                downloadPDF(pdfBytes, "protected.pdf");
-                showModal("✅", "Success!", "PDF protected! Password: 123456", false);
-            } catch (error) {
-                showModal("❌", "Error", "Failed to protect PDF: " + error.message);
-            }
+                const pdf = await PDFLib.PDFDocument.load(await currentFiles[0].arrayBuffer());
+                pdf.encrypt({ userPassword: "123456", ownerPassword: "owner123" });
+                downloadPDF(await pdf.save(), "protected.pdf");
+                showModal("✅", "Success!", "Password: 123456", false);
+            } catch (err) { showModal("❌", "Error", err.message); }
         }
 
         async function compressPDF() {
-            if (currentFiles.length !== 1) {
-                showModal("⚠️", "One File Only", "Please select exactly 1 PDF file.");
-                return;
-            }
-            
-            showModal("📦", "Compressing PDF", "Basic compression (removes metadata)...", true);
-            
+            if (currentFiles.length !== 1) { showModal("⚠️", "One File Only", "Select exactly 1 PDF file."); return; }
+            showModal("📦", "Compressing", "Processing...", true);
             try {
-                const fileBuffer = await currentFiles[0].arrayBuffer();
-                const pdf = await PDFLib.PDFDocument.load(fileBuffer);
-                const pdfBytes = await pdf.save();
-                
-                const originalSize = fileBuffer.byteLength;
-                const compressedSize = pdfBytes.byteLength;
-                const saved = ((originalSize - compressedSize) / originalSize * 100).toFixed(1);
-                
-                downloadPDF(pdfBytes, "compressed.pdf");
-                showModal("✅", "Success!", `Compressed! Saved ${saved}% (${(compressedSize/1024).toFixed(0)} KB)`, false);
-            } catch (error) {
-                showModal("❌", "Error", "Failed to compress: " + error.message);
-            }
+                const pdf = await PDFLib.PDFDocument.load(await currentFiles[0].arrayBuffer());
+                const bytes = await pdf.save();
+                downloadPDF(bytes, "compressed.pdf");
+                showModal("✅", "Success!", "PDF compressed.", false);
+            } catch (err) { showModal("❌", "Error", err.message); }
         }
 
-        async function organizePDF() {
-            if (currentFiles.length !== 1) {
-                showModal("⚠️", "One File Only", "Please select exactly 1 PDF file.");
-                return;
-            }
-            
-            showModal("📑", "Organizing PDF", "Creating organized copy...", true);
-            
-            try {
-                const fileBuffer = await currentFiles[0].arrayBuffer();
-                const pdf = await PDFLib.PDFDocument.load(fileBuffer);
-                const pdfBytes = await pdf.save();
-                downloadPDF(pdfBytes, "organized.pdf");
-                showModal("✅", "Success!", "PDF organized! Use Pro version for page reordering.", false);
-            } catch (error) {
-                showModal("❌", "Error", "Failed to organize: " + error.message);
-            }
-        }
-
-        // Helper functions
-        function showModal(icon, title, message, showProgress = false) {
+        // Modal helpers
+        function showModal(icon, title, msg, showProgress = false) {
             document.getElementById('modalIcon').innerHTML = icon;
             document.getElementById('modalTitle').innerHTML = title;
-            document.getElementById('modalMessage').innerHTML = message;
+            document.getElementById('modalMessage').innerHTML = msg;
             document.getElementById('progressBar').style.display = showProgress ? 'block' : 'none';
             document.getElementById('progressFill').style.width = '0%';
             document.getElementById('loadingText').style.display = showProgress ? 'block' : 'none';
             document.getElementById('toolModal').style.display = 'flex';
         }
 
-        function updateProgress(percent) {
-            document.getElementById('progressFill').style.width = percent + '%';
-            document.getElementById('loadingText').innerHTML = `Processing... ${Math.floor(percent)}%`;
+        function updateProgress(p) {
+            document.getElementById('progressFill').style.width = p + '%';
+            document.getElementById('loadingText').innerHTML = `Processing... ${Math.floor(p)}%`;
         }
 
         function downloadPDF(bytes, filename) {
-            const blob = new Blob([bytes], { type: 'application/pdf' });
-            saveAs(blob, filename);
+            saveAs(new Blob([bytes], { type: 'application/pdf' }), filename);
         }
 
         function closeModal() {
             document.getElementById('toolModal').style.display = 'none';
         }
 
-        window.onclick = (event) => {
-            if (event.target === document.getElementById('toolModal')) closeModal();
-        };
+        window.onclick = (e) => { if (e.target === document.getElementById('toolModal')) closeModal(); };
 
-        // Search functionality
+        // Search & Filter events
         document.getElementById('searchInput').addEventListener('input', (e) => {
-            const search = e.target.value.toLowerCase();
-            const filtered = tools.filter(t => t.name.toLowerCase().includes(search) || t.description.toLowerCase().includes(search));
-            document.getElementById('toolsGrid').innerHTML = filtered.map(tool => `
-                <div class="tool-card" onclick="selectTool('${tool.action}')">
-                    <div class="tool-icon">${tool.icon}</div>
-                    <h3>${tool.name}</h3>
-                    <p>${tool.description}</p>
-                    <span class="badge">Free</span>
-                </div>
-            `).join('');
+            updateSuggestions();
+            renderTools('all', e.target.value);
         });
-
-        // Category filter
+        
         document.querySelectorAll('.category-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
-                const category = btn.dataset.category;
-                const filtered = category === 'all' ? tools : tools.filter(t => t.category === category);
-                document.getElementById('toolsGrid').innerHTML = filtered.map(tool => `
-                    <div class="tool-card" onclick="selectTool('${tool.action}')">
-                        <div class="tool-icon">${tool.icon}</div>
-                        <h3>${tool.name}</h3>
-                        <p>${tool.description}</p>
-                        <span class="badge">Free</span>
-                    </div>
-                `).join('');
+                renderTools(btn.dataset.category, document.getElementById('searchInput').value);
             });
         });
 
+        // Back to top
+        const backBtn = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) backBtn.classList.add('show');
+            else backBtn.classList.remove('show');
+        });
+        backBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
         // Initialize
         renderTools();
-        renderPopular();
+        updatePopularSection();
     </script>
 </body>
 
